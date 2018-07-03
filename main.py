@@ -18,4 +18,4 @@ def generateRandomSeats():
 load_dotenv(find_dotenv())
 token = os.getenv('SLACK_BOT_TOKEN')
 slack = Slacker(token)
-slack.chat.post_message(channel="#자리나라자리자리", text=generateRandomSeats(), as_user=True)
+slack.chat.post_message(channel="#general", text=generateRandomSeats(), as_user=True)
