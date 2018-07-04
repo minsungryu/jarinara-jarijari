@@ -13,7 +13,7 @@ def shuffleTeams():
 
 def printSeats(teams):
     buffer = '''
-    ======= 스크린 ======
+    ======= 스크린 =======
 
     ==3==  ==2==  ==1==
        {2}조        {1}조       {0}조
