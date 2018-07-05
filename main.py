@@ -21,8 +21,8 @@ def printSeats(teams):
     ==6==  ==5==  ==4==
        {5}조        {4}조       {3}조
 
-    ==8==  ==7==
-       {7}조        {6}조
+                 ==8==  ==7==
+                    {7}조        {6}조
     '''
     
     return buffer.format(*teams)
