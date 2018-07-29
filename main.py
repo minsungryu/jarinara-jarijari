@@ -4,6 +4,7 @@ import os
 import random
 from dotenv import load_dotenv, find_dotenv
 from slacker import Slacker
+from SeatGenerator import SeatGenerator
 
 def shuffleTeams():
     teams = [1, 2, 3, 4, 5, 6, 7, 8]
@@ -12,22 +13,24 @@ def shuffleTeams():
     return teams
 
 def printSeats(teams):
+    team_chars = ["　", "１", "２", "３", "４", "５", "６", "７", "８"]
     buffer = '''
-    ======= 스크린 =======
+━━━🖥━━🖥━━🖥━━━
 
-    ==3==  ==2==  ==1==
-       {2}조        {1}조       {0}조
+┏━┓\t┏━┓\t┏━┓\t┏━┓
+┃{0}┃\t┃{1}┃\t┃{2}┃\t┃{3}┃
+┃━┃\t┃━┃\t┃━┃\t┃━┃
+┃{4}┃\t┃{5}┃\t┃{6}┃\t┃{7}┃
+┗━┛\t┗━┛\t┗━┛\t┗━┛
 
-    ==6==  ==5==  ==4==
-       {5}조        {4}조       {3}조
-
-    ==8==  ==7==
-       {7}조        {6}조
-    '''
+'''
     
-    return buffer.format(*teams)
+    return buffer.format(*[team_chars[y] for x in teams for y in x])
+
+
+sg = SeatGenerator(8, 7, 4)
 
 load_dotenv(find_dotenv())
 token = os.getenv('SLACK_BOT_TOKEN')
 slack = Slacker(token)
-slack.chat.post_message(channel="#general", text=printSeats(shuffleTeams()), as_user=True)
+slack.chat.post_message(channel="#general", text=printSeats(sg.shuffleSeats()), as_user=True)
